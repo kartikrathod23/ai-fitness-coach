@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Fitness Coach
 
-## Getting Started
+AI Fitness Coach is a full-stack web application that generates **personalized workout and diet plans** using AI based on user details like age, goal, fitness level, diet preference, etc.  
+The app focuses on **clean UX, real-world AI integration, and production-ready full-stack architecture**.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Live Link - https://ai-fitness-coach-99ra.vercel.app/
+
+## Features
+
+### Core Features
+- **AI-generated personalized fitness plans**
+- Workout plans with exercises, sets, reps & rest
+- Diet plans with meal breakdowns
+- **Export fitness plan as PDF**
+- **Text-to-Speech** (Read workout & diet plans aloud)
+- **Regenerate plan** anytime
+- **Plan history** (locally saved)
+
+### AI Image Generation
+- Generate **exercise images** (e.g. “Barbell Squat”)
+- Generate **meal images** (e.g. “Grilled Chicken Salad”)
+- Implemented using **Pollinations AI** (free image generation)
+
+### Authentication
+- User **Signup & Login**
+- Password hashing using bcrypt
+- JWT-based authentication
+- MongoDB for user storage
+
+---
+
+## Tech Stack
+
+### Frontend
+- **Next.js (App Router)**
+- **React.js**
+- **Tailwind CSS**
+- Framer Motion (animations)
+
+### Backend
+- **Next.js API Routes**
+- **Node.js**
+- **MongoDB (Mongoose)**
+- JWT Authentication
+
+### AI & Utilities
+- **Google Gemini API** (AI fitness plan generation)
+- **Pollinations AI** (image generation)
+- Web Speech API (Text-to-Speech)
+- jsPDF (PDF export)
+
+---
+
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+GEMINI_API_KEY=your_gemini_api_key
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+▶️ How to Run Locally
+1️⃣ Clone the repository
+```bash
+git clone https://github.com/your-username/ai-fitness-coach.git
+cd ai-fitness-coach
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2️⃣ Install dependencies
+```bash
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3️⃣ Set environment variables
+Create .env.local and add the required keys (see above).
 
-## Learn More
+4️⃣ Run the development server
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+5️⃣ Open in browser
+```
+http://localhost:3000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+⚠️ Notes on AI Usage
+Gemini API is used for text generation (fitness plan)
+API rate limits are handled gracefully
+Image generation uses Pollinations AI as a free alternative
+If AI quota is exhausted, user-friendly error messages are shown
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🙌 Author
+Kartik Rathod
+Full Stack Developer
+GitHub: https://github.com/kartikrathod23
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
