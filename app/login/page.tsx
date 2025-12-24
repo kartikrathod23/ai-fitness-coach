@@ -28,7 +28,6 @@ export default function LoginPage() {
         return;
       }
 
-      // Save token (can be used later for protected routes)
       localStorage.setItem("token", data.token);
 
       // Redirect after login

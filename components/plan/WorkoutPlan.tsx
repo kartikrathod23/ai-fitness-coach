@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import ImageModal from "./ImageModal";
 import { speakText, stopSpeaking } from "@/lib/textToSpeech";
 import { workoutPlanToSpeech } from "@/lib/planToSpeechText";
@@ -8,43 +8,26 @@ import { workoutPlanToSpeech } from "@/lib/planToSpeechText";
 export default function WorkoutPlan({ plan }: any) {
     const [image, setImage] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+    
 
-    // async function generateImage(exercise: string) {
-    //     setLoading(true);
+    useEffect(() => {
+        function handleLoaded() {
+            setLoading(false);
+        }
 
-    //     try {
-    //         const res = await fetch("/api/generate-image", {
-    //             method: "POST",
-    //             headers: { "Content-Type": "application/json" },
-    //             body: JSON.stringify({
-    //                 prompt: `${exercise} exercise in gym, realistic fitness photography`,
-    //             }),
-    //         });
+        window.addEventListener("image-loaded", handleLoaded);
+        return () => window.removeEventListener("image-loaded", handleLoaded);
+    }, []);
 
-    //         const data = await res.json();
-
-    //         if (!res.ok) {
-    //             alert(data.error || "Failed to generate image");
-    //             return;
-    //         }
-
-    //         setImage(data.image);
-    //     } catch {
-    //         alert("Network error");
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // }
 
     function generateImage(exercise: string) {
         const prompt = encodeURIComponent(
             `${exercise} gym exercise, realistic fitness photography, correct form`
         );
 
+        setLoading(true);     // 🔴 START LOADING
         setImage(`https://image.pollinations.ai/prompt/${prompt}`);
     }
-
-
 
 
     if (!plan) {

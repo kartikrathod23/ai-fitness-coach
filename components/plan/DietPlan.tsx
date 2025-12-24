@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import ImageModal from "./ImageModal";
 import { speakText, stopSpeaking } from "@/lib/textToSpeech";
 import { dietPlanToSpeech } from "@/lib/planToSpeechText";
@@ -9,17 +9,15 @@ export default function DietPlan({ plan }: any) {
     const [image, setImage] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
-    // async function generateImage(meal: string) {
-    //     const res = await fetch("/api/generate-image", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify({
-    //             prompt: `${meal} food photography, realistic, studio lighting`,
-    //         }),
-    //     });
+    useEffect(() => {
+        function handleLoaded() {
+            setLoading(false);
+        }
 
-    //     const data = await res.json();
-    //     setImage(data.image);
+        window.addEventListener("image-loaded", handleLoaded);
+        return () => window.removeEventListener("image-loaded", handleLoaded);
+    }, []);
+
     // }
 
     function generateImage(meal: string) {
@@ -27,8 +25,10 @@ export default function DietPlan({ plan }: any) {
             `${meal} food photography, realistic, high quality`
         );
 
+        setLoading(true);     // 🔴 START LOADING
         setImage(`https://image.pollinations.ai/prompt/${prompt}`);
     }
+
 
 
     if (!plan) {

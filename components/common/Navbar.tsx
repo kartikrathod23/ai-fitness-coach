@@ -46,14 +46,14 @@ export default function Navbar() {
         </Link>
 
         <div className="flex items-center gap-4">
-          {/* THEME TOGGLE */}
+          {/* THEME TOGGLE
           <button
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="rounded-lg border px-3 py-2 hover:bg-muted transition"
             aria-label="Toggle theme"
           >
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
+          </button> */}
 
           {/* AUTH BUTTONS */}
           {!isLoggedIn ? (
